@@ -12,6 +12,7 @@
         <module>flux-management</module>
         <module>user-management</module>
         <module>worker-management</module>
+        <module>commons</module>
     </modules>
     <groupId>steam.falafel</groupId>
     <artifactId>parent-pom</artifactId>

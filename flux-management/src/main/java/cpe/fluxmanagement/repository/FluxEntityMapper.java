@@ -1,4 +1,4 @@
 package cpe.fluxmanagement.repository;
 
-public class FluxRepositoryMapper {
+public class FluxEntityMapper {
 }

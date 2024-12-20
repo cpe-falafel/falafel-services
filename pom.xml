@@ -13,7 +13,7 @@
         <module>user-management</module>
         <module>worker-management</module>
     </modules>
-    <groupId>steam.falafel</groupId>
+    <groupId>stream.falafel</groupId>
     <artifactId>parent-pom</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <name>parent-pom</name>

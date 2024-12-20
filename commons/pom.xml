@@ -6,12 +6,11 @@
 
     <parent>
         <artifactId>parent-pom</artifactId>
-        <groupId>steam.falafel</groupId>
+        <groupId>stream.falafel</groupId>
         <version>1.0.1-SNAPSHOT</version>
-        <relativePath/>
+
     </parent>
 
-    <groupId>cpe.commons</groupId>
     <artifactId>commons</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <name>commons</name>

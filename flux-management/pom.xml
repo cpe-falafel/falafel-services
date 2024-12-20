@@ -6,7 +6,7 @@
         <artifactId>parent-pom</artifactId>
         <groupId>stream.falafel</groupId>
         <version>1.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+         <!-- lookup parent from repository -->
     </parent>
     <artifactId>flux-management</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -30,12 +30,12 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>cpe.commons.service</groupId>
+            <groupId>stream.falafel.service</groupId>
             <artifactId>commons-service</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>cpe.commons.api</groupId>
+            <groupId>stream.falafel.api</groupId>
             <artifactId>commons-api</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>

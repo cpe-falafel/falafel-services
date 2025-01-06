@@ -10,10 +10,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SingleWorkerDTO {
-    private UUID uid;
-    private String owner;
-    private long lastUpdate;
-    private String configurationValue;
-    private String previewUri;
-    private String previewKey;
+  private UUID uid;
+  private UUID group;
+  private long lastUpdate;
+  private String configurationValue;
+  private String previewUri;
+  private String previewKey;
 }

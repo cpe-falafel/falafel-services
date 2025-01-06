@@ -6,12 +6,12 @@
 
     <parent>
         <artifactId>commons</artifactId>
-        <groupId>cpe.commons</groupId>
+        <groupId>stream.falafel</groupId>
         <version>1.0.1-SNAPSHOT</version>
-        <relativePath/>
+
     </parent>
 
-    <groupId>cpe.commons.service</groupId>
+    <groupId>stream.falafel.service</groupId>
     <artifactId>commons-service</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <name>commons-service</name>
@@ -20,4 +20,18 @@
     <dependencies>
 
     </dependencies>
+
+    <!-- is commons: no build with main class, we skip-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>parent-pom</artifactId>
-        <groupId>steam.falafel</groupId>
+        <groupId>stream.falafel</groupId>
         <version>1.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+         <!-- lookup parent from repository -->
     </parent>
     <artifactId>worker-management</artifactId>
     <version>0.0.1-SNAPSHOT</version>

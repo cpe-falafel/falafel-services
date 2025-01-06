@@ -1,4 +1,4 @@
-package cpe.commons.service;
+package stream.falafel.service;
 
 public class TestService {
     private String test;

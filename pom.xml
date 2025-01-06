@@ -6,7 +6,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modules>
         <module>flux-management</module>
@@ -14,7 +13,7 @@
         <module>worker-management</module>
         <module>commons</module>
     </modules>
-    <groupId>steam.falafel</groupId>
+    <groupId>stream.falafel</groupId>
     <artifactId>parent-pom</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <name>parent-pom</name>

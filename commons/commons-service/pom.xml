@@ -18,9 +18,8 @@
     <description>commons-service</description>
 
     <dependencies>
-
         <dependency>
-            <groupId>cpe.commons.api</groupId>
+            <groupId>stream.falafel.api</groupId>
             <artifactId>commons-api</artifactId>
             <version>1.0.1-SNAPSHOT</version>
             <scope>compile</scope>

@@ -1,1 +1,4 @@
 .idea
+/commons/commons-api/target
+/commons/commons-service/target
+/worker-management/target

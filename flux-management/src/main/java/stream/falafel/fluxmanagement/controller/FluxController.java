@@ -1,12 +1,10 @@
 package stream.falafel.fluxmanagement.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import stream.falafel.fluxmanagement.domain.Flux;
+import org.springframework.web.bind.annotation.*;
 import stream.falafel.fluxmanagement.domain.FluxService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -17,13 +15,23 @@ public class FluxController {
 
     private final FluxService fluxService;
 
-    @GetMapping("/")
-    public SingleFluxDTO getFlux(@RequestParam String uid) {
-        return fluxService.findByUid(uid);
+    @GetMapping("/{uid}")
+    public SingleFluxDTO getFlux(@PathVariable String uid) {
+        return fluxDTOMapper.fluxToSingleFluxDTO(fluxService.findByUid(uid));
     }
 
     @GetMapping
-    public FluxListDTO findByOwner(@RequestParam String owner) {
-        return fluxService.findByOwner(owner);
+    public List<FluxListSummary> findByOwner(@RequestParam String group) {
+        return fluxService.findByOwner(group).stream().map(fluxDTOMapper::fluxToFluxListSummary).toList();
+    }
+
+    @PutMapping("/{uid}")
+    public void editFlux(@PathVariable String uid, @RequestParam EditFluxDTO editFluxDTO) {
+        fluxService.editFlux(uid, fluxDTOMapper.editFluxDTOToEditFlux(editFluxDTO));
+    }
+
+    @PostMapping
+    public void createFlux(@RequestParam CreateFluxDTO createFluxDTO) {
+        fluxService.createFlux(fluxDTOMapper.createFluxDTOToFlux(createFluxDTO));
     }
 }

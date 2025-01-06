@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class FluxListSummary {
     private String uid;
     private String name;
-    private int lastEdited;
+    private long lastEdited;
 }

@@ -20,7 +20,7 @@ public class FluxEntity {
 
     private String value; //json with configuration => Destined to be an object
 
-    private String ressourceDependencies;
+    private String ressourceDependencies; //link to minio resources
 
     private Date lastEdited;
 }

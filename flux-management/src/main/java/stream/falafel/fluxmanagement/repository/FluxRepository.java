@@ -25,6 +25,15 @@ public class FluxRepository implements IFluxRepository {
         return fluxJPARepository.findByOwner(owner).stream()
                 .map(fluxEntityMapper::fluxEntityToFlux)
                 .toList();
+    }
 
+    @Override
+    public void editFlux(Flux flux){
+        fluxJPARepository.save(fluxEntityMapper.fluxToFluxEntity(flux));
+    }
+
+    @Override
+    public void createFlux(Flux flux){
+        fluxJPARepository.save(fluxEntityMapper.fluxToFluxEntity(flux));
     }
 }

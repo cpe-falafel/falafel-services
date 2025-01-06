@@ -1,4 +1,4 @@
-package stream.falafel.fluxmanagement.controller;
+package stream.falafel.fluxmanagement.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EditFluxDTO {
-
+public class EditFlux {
     private String name;
 
     private String value;

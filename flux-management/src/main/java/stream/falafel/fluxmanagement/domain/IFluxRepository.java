@@ -6,4 +6,8 @@ public interface IFluxRepository {
      Flux findByUid(String uid);
 
      List<Flux> findByOwner(String owner);
+
+     void editFlux(Flux flux);
+
+     void createFlux(Flux flux);
 }

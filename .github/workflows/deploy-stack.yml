@@ -15,4 +15,4 @@ jobs:
         with:
           token: ${{ secrets.STACK_PAT }}
           repository: 'cpe-falafel/falafel-stack'
-          event-type: deploy_ui
+          event-type: deploy_services

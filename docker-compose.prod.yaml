@@ -3,6 +3,7 @@ version: '3.8'
 services:
   # Internal services
   db:
+    container_name: db
     image: postgres:17.2-alpine3.21
     environment:
       - POSTGRES_USER
@@ -15,6 +16,35 @@ services:
 
   adminer:
     image: adminer:4.8.1-standalone
+    networks:
+      - fal_internal
+      - fal_public
+
+  flux-management:
+    container_name: flux-management
+    build:
+      context: .
+      dockerfile: ./docker/flux-management.Dockerfile
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_SOURCE_URI=jdbc:postgresql://db:5432/${POSTGRES_DB}
+    networks:
+      - fal_internal
+      - fal_public
+
+  worker-management:
+    container_name: worker-management
+    build:
+      context: .
+      dockerfile: ./docker/worker-management.Dockerfile
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_SOURCE_URI=jdbc:postgresql://db:5432/${POSTGRES_DB}
+      - FLUX_MANAGER_URL=http://flux-management:8080/api
     networks:
       - fal_internal
       - fal_public

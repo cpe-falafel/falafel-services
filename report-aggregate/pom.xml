@@ -12,6 +12,7 @@
     <artifactId>report-aggregate</artifactId>
     <name>report-aggregate</name>
     <description>Aggregate Coverage Report</description>
+    <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>stream.falafel</groupId>
@@ -47,4 +48,16 @@
             </build>
         </profile>
     </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

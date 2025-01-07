@@ -18,7 +18,12 @@
     <description>commons-service</description>
 
     <dependencies>
-
+        <dependency>
+            <groupId>stream.falafel.api</groupId>
+            <artifactId>commons-api</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <!-- is commons: no build with main class, we skip-->

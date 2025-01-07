@@ -1,6 +1,6 @@
 package stream.falafel.worker.domain;
 
-import cpe.commons.api.flux.FluxDTO;
+import cpe.commons.api.flux.SingleFluxDTO;
 import stream.falafel.worker.domain.flux.FluxService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;
@@ -23,7 +23,7 @@ public class CommitService {
             throw new CommitException();
         }
 
-        FluxDTO existingFlux = fluxService.getFluxByUid(fluxId);
+        SingleFluxDTO existingFlux = fluxService.getFluxByUid(fluxId);
         if (existingFlux == null) {
             throw new CommitException();
         }

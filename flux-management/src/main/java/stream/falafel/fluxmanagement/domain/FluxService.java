@@ -19,15 +19,23 @@ public class FluxService {
         return iFluxRepository.findByOwner(owner);
     }
 
-    public void editFlux(String uid, EditFlux editFlux) {
+    public Flux editFlux(String uid, EditFlux editFlux) {
         Flux f = findByUid(uid);
         f.setName(editFlux.getName());
         f.setValue(editFlux.getValue());
         f.setRessourceDependencies(editFlux.getRessourceDependencies());
         iFluxRepository.editFlux(f);
+        return f;
     }
 
-    public void createFlux(Flux f) {
+    public Flux createFlux(Flux f) {
         iFluxRepository.createFlux(f);
+        return f;
+    }
+
+    public Flux deleteFlux(String uid) {
+        Flux f = iFluxRepository.findByUid(uid);
+        iFluxRepository.deleteFlux(f);
+        return f;
     }
 }

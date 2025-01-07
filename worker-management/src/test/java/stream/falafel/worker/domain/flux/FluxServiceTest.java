@@ -1,6 +1,6 @@
 package stream.falafel.worker.domain.flux;
 
-import cpe.commons.api.flux.FluxDTO;
+import cpe.commons.api.flux.SingleFluxDTO;
 import stream.falafel.service.FluxHttpClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,11 +26,11 @@ class FluxServiceTest {
   void testGetFluxByUid() {
     // Arrange
     UUID uuid = UUID.randomUUID();
-    FluxDTO expectedFluxDTO = new FluxDTO();
+    SingleFluxDTO expectedFluxDTO = new SingleFluxDTO();
     when(fluxHttpClient.getFluxByUid(uuid)).thenReturn(expectedFluxDTO);
 
     // Act
-    FluxDTO result = fluxService.getFluxByUid(uuid);
+    SingleFluxDTO result = fluxService.getFluxByUid(uuid);
 
     // Assert
     assertNotNull(result, "The result should not be null");

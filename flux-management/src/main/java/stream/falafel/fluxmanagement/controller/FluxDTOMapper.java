@@ -1,5 +1,9 @@
 package stream.falafel.fluxmanagement.controller;
 
+import cpe.commons.api.flux.CreateFluxDTO;
+import cpe.commons.api.flux.EditFluxDTO;
+import cpe.commons.api.flux.FluxListSummary;
+import cpe.commons.api.flux.SingleFluxDTO;
 import org.springframework.stereotype.Component;
 import stream.falafel.fluxmanagement.domain.EditFlux;
 import stream.falafel.fluxmanagement.domain.Flux;

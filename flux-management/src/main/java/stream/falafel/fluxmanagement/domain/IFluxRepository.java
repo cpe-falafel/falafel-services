@@ -10,4 +10,6 @@ public interface IFluxRepository {
      void editFlux(Flux flux);
 
      void createFlux(Flux flux);
+
+     void deleteFlux(Flux flux);
 }

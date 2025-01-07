@@ -1,4 +1,4 @@
-package stream.falafel.fluxmanagement.controller;
+package cpe.commons.api.flux;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

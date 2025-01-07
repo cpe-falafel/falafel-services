@@ -36,4 +36,9 @@ public class FluxRepository implements IFluxRepository {
     public void createFlux(Flux flux){
         fluxJPARepository.save(fluxEntityMapper.fluxToFluxEntity(flux));
     }
+
+    @Override
+    public void deleteFlux(Flux flux){
+        fluxJPARepository.delete(fluxEntityMapper.fluxToFluxEntity(flux));
+    }
 }

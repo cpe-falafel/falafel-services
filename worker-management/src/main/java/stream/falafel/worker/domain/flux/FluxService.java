@@ -1,6 +1,6 @@
 package stream.falafel.worker.domain.flux;
 
-import cpe.commons.api.flux.FluxDTO;
+import cpe.commons.api.flux.SingleFluxDTO;
 import stream.falafel.service.FluxHttpClient;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +20,7 @@ public class FluxService {
         fluxHttpClient = new FluxHttpClient(fluxManagerBaseUrl);
     }
 
-    public FluxDTO getFluxByUid(UUID uuid){
+    public SingleFluxDTO getFluxByUid(UUID uuid){
         return fluxHttpClient.getFluxByUid(uuid);
     }
 }

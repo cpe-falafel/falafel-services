@@ -1,6 +1,6 @@
 package stream.falafel.worker.domain;
 
-import cpe.commons.api.flux.FluxDTO;
+import cpe.commons.api.flux.SingleFluxDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -27,7 +27,7 @@ class CommitServiceTest {
   private UUID validWorkerId;
   private UUID validFluxId;
   private Worker mockWorker;
-  private FluxDTO mockFlux;
+  private SingleFluxDTO mockFlux;
 
   @BeforeEach
   void setUp() {
@@ -35,7 +35,7 @@ class CommitServiceTest {
     validWorkerId = UUID.randomUUID();
     validFluxId = UUID.randomUUID();
     mockWorker = new Worker("{}", "http://worker/api", "api-key");
-    mockFlux = new FluxDTO();
+    mockFlux = new SingleFluxDTO();
   }
 
   @Test

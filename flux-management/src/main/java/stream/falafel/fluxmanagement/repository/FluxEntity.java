@@ -11,7 +11,6 @@ import java.sql.Date;
 @Entity(name = "flux")
 public class FluxEntity {
     @Id
-    @GeneratedValue
     private String uid;
 
     private String name;

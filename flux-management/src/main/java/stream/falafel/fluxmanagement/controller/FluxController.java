@@ -4,15 +4,11 @@ import cpe.commons.api.flux.CreateFluxDTO;
 import cpe.commons.api.flux.EditFluxDTO;
 import cpe.commons.api.flux.FluxListSummary;
 import cpe.commons.api.flux.SingleFluxDTO;
-import cpe.fluxmanagement.controller.FluxDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import stream.falafel.fluxmanagement.domain.Flux;
 import stream.falafel.fluxmanagement.domain.FluxService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +22,7 @@ public class FluxController {
     private final FluxService fluxService;
 
     @GetMapping("/{uid}")
-    public ResponseEntity<SingleFluxDTO> getFlux(@PathVariable("uid") String uid) {
+    public ResponseEntity<SingleFluxDTO> getFluxByUid(@PathVariable("uid") String uid) {
         SingleFluxDTO f = fluxDTOMapper.fluxToSingleFluxDTO(fluxService.findByUid(uid));
         if (f != null)
             return ResponseEntity.ok(f);
@@ -43,14 +39,14 @@ public class FluxController {
     }
 
     @PutMapping("/{uid}")
-    public ResponseEntity<SingleFluxDTO> editFlux(@PathVariable("uid") String uid, @RequestParam EditFluxDTO editFluxDTO) {
+    public ResponseEntity<SingleFluxDTO> editFlux(@PathVariable("uid") String uid, @RequestBody EditFluxDTO editFluxDTO) {
         SingleFluxDTO f = fluxDTOMapper.fluxToSingleFluxDTO(
                 fluxService.editFlux(uid, fluxDTOMapper.editFluxDTOToEditFlux(editFluxDTO)));
         return ResponseEntity.ok(f);
     }
 
     @PostMapping
-    public ResponseEntity<SingleFluxDTO> createFlux(@RequestParam CreateFluxDTO createFluxDTO) {
+    public ResponseEntity<SingleFluxDTO> createFlux(@RequestBody CreateFluxDTO createFluxDTO) {
         SingleFluxDTO f = fluxDTOMapper.fluxToSingleFluxDTO(
                 fluxService.createFlux(fluxDTOMapper.createFluxDTOToFlux(createFluxDTO)));
         return ResponseEntity.status(HttpStatus.CREATED).body(f);

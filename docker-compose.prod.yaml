@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # Internal services
+  db:
+    image: postgres:17.2-alpine3.21
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - fal_internal
+
+  adminer:
+    image: adminer:4.8.1-standalone
+    networks:
+      - fal_internal
+      - fal_public
+
+volumes:
+  postgres_data:
+
+networks:
+  fal_internal:
+    external: true
+  fal_public:
+    external: true

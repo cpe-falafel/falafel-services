@@ -28,6 +28,8 @@ public class FluxHttpClient {
         return response.getBody();
     }
 
+
+    // TODO : modify to adapt new returns in controller flux
     public SingleFluxDTO getFluxByUid(UUID uuid) {
         String uid = uuid.toString(); // Flux use String for the parameters
 
@@ -43,7 +45,6 @@ public class FluxHttpClient {
                 return null;
             }
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -62,7 +63,6 @@ public class FluxHttpClient {
                 return Collections.emptyList();  // Renvoie une liste vide si la réponse n'est pas correcte
             }
         } catch (Exception e) {
-            e.printStackTrace();
             return Collections.emptyList();
         }
     }
@@ -74,7 +74,6 @@ public class FluxHttpClient {
             restTemplate.postForEntity(url, createFluxDTO, Void.class);
             System.out.println("Création du flux réussie.");
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("Erreur lors de la création du flux.");
         }
     }
@@ -86,7 +85,6 @@ public class FluxHttpClient {
             restTemplate.put(url, editFluxDTO);
             System.out.println("Modification du flux réussie pour UID : " + uid);
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("Erreur lors de la modification du flux.");
         }
     }

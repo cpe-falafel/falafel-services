@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class FluxServiceTest {
+class FluxServiceTest {
 
     @InjectMocks
     private FluxService fluxService;

@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
-public class FluxControllerTest {
+class FluxControllerTest {
 
     @InjectMocks
     private FluxController fluxController;
@@ -115,8 +115,6 @@ public class FluxControllerTest {
         Flux expectedFlux = new Flux("1", "name", "owner",
                 "value", "ressources", new Date(11111));
         Flux expectedFluxModified = new Flux("1", "modifiedname", "owner",
-                "value", "ressources", new Date(11111));
-        SingleFluxDTO expectedDTO = new SingleFluxDTO("1", "modifiedname", "owner",
                 "value", "ressources", new Date(11111));
         EditFluxDTO editFluxDTO = new EditFluxDTO("modifiedname", "value", "ressources");
         EditFlux editFlux = new EditFlux("modifiedname", "value", "ressources");

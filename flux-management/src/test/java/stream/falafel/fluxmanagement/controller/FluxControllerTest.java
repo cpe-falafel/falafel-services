@@ -48,7 +48,7 @@ public class FluxControllerTest {
         ResponseEntity<SingleFluxDTO> response = fluxController.getFluxByUid(expectedFlux.getUid());
 
         //then
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(expectedFlux.getUid(), response.getBody().getUid());
     }
@@ -64,7 +64,7 @@ public class FluxControllerTest {
         ResponseEntity<SingleFluxDTO> response = fluxController.getFluxByUid(nonExistentUid);
 
         // then
-        assertEquals(404, response.getStatusCodeValue());
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertNull(response.getBody());
     }
 
@@ -90,7 +90,7 @@ public class FluxControllerTest {
         ResponseEntity<List<FluxListSummary>> response = fluxController.findByOwner(expectedFlux.getOwner());
 
         //then
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(expectedListDTO, response.getBody());
     }
@@ -105,7 +105,7 @@ public class FluxControllerTest {
         ResponseEntity<List<FluxListSummary>> response = fluxController.findByOwner(nonExistentOwner);
 
         // then
-        assertEquals(404, response.getStatusCodeValue());
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertNull(response.getBody());
     }
 
@@ -128,7 +128,7 @@ public class FluxControllerTest {
         ResponseEntity<SingleFluxDTO> response = fluxController.editFlux(expectedFlux.getUid(), editFluxDTO);
         //then
 
-        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test

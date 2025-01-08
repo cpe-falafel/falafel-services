@@ -34,11 +34,12 @@ public class FluxRepository implements IFluxRepository {
 
     @Override
     public void createFlux(Flux flux){
-        fluxJPARepository.save(fluxEntityMapper.fluxToFluxEntity(flux));
+        fluxJPARepository.save(fluxEntityMapper.fluxToFluxEntityToCreate(flux));
     }
 
     @Override
-    public void deleteFlux(Flux flux){
-        fluxJPARepository.delete(fluxEntityMapper.fluxToFluxEntity(flux));
+    public void deleteFluxByUid(String uid){
+        FluxEntity fluxToDelete = fluxJPARepository.findByUid(uid);
+        fluxJPARepository.delete(fluxToDelete);
     }
 }

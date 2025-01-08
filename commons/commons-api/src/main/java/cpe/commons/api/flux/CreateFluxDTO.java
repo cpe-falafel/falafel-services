@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class CreateFluxDTO { //Used when creating a new flux
-    //TestService testService = null;
-    //Testdto dto = null;
+public class CreateFluxDTO {
 
     private String owner;
 

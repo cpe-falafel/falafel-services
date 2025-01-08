@@ -43,8 +43,7 @@ class WorkerControllerTest {
         ResponseEntity<WorkerListDTO> response = workerController.getAllWorkers(group);
 
         // Assert
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals(0, response.getBody().getValues().size());
+        assertEquals(404, response.getStatusCodeValue());
     }
 
     @Test

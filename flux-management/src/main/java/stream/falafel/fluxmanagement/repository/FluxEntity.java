@@ -1,7 +1,6 @@
 package stream.falafel.fluxmanagement.repository;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -11,7 +10,6 @@ import java.sql.Date;
 @Entity(name = "flux")
 public class FluxEntity {
     @Id
-    @GeneratedValue
     private String uid;
 
     private String name;

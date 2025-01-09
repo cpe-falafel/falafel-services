@@ -36,14 +36,14 @@ public class CommitService {
             throw new CommitException();
         }
 
-        //save worker in DB in case of a commit,
-        // if called when worker creation, the save will modify nothing
-        workerRepository.save(existingWorker);
+        existingWorker.setLastFluxUid(fluxId.toString());
+        existingWorker.setConfigurationValue(existingFlux.getValue());
+        Worker saved = workerRepository.save(existingWorker);
 
-        Commit commit = new Commit(existingFlux, existingWorker); //Object to combine flux and worker
+        // Commit commit = new Commit(existingFlux, existingWorker); //Object to combine flux and worker
 
         try {
-            restTemplate.postForEntity(baseUrl, commit, Void.class);
+            restTemplate.postForEntity(baseUrl, saved, Void.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -11,6 +11,7 @@ import stream.falafel.worker.domain.flux.FluxService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;
 import stream.falafel.worker.exception.CommitException;
+import stream.falafel.worker.repository.WorkerRepository;
 
 import java.util.UUID;
 
@@ -22,6 +23,9 @@ class CommitServiceTest {
   @Mock private WorkerService workerService;
 
   @Mock private FluxService fluxService;
+
+  @Mock
+  private WorkerRepository workerRepository;
 
   @InjectMocks private CommitService commitService;
 
@@ -35,7 +39,7 @@ class CommitServiceTest {
     MockitoAnnotations.openMocks(this);
     validWorkerId = UUID.randomUUID();
     validFluxId = UUID.randomUUID();
-    mockWorker = new Worker("{}", "http://worker/api", "api-key");
+    mockWorker = new Worker("1", "{}", "http://worker/api", "api-key");
     mockFlux = new SingleFluxDTO();
   }
 
@@ -74,6 +78,7 @@ class CommitServiceTest {
 
     // Act
     commitService.commit(validWorkerId, validFluxId);
+    when(workerRepository.save(any())).thenReturn(mockWorker);
 
     // Verify
     verify(workerService, times(1)).getWorkerByUid(validWorkerId);

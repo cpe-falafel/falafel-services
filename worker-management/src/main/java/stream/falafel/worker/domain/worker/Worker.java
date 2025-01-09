@@ -13,6 +13,7 @@ import java.util.UUID;
 public class Worker {
     private UUID uid;
     private UUID groupUid;
+    private String lastFluxUid;
     private LocalDate lastUpdate;
     private String configurationValue;
     private String uri;
@@ -21,8 +22,9 @@ public class Worker {
     private String previewKey;
     private String packageKey;
 
-    public Worker(@NonNull String configurationValue, @NonNull String uri, String apiKey) {
+    public Worker(String lastFluxUid, @NonNull String configurationValue, @NonNull String uri, String apiKey) {
         this.uid = UUID.randomUUID();
+        this.lastFluxUid = lastFluxUid;
         this.lastUpdate = LocalDate.now();
         this.configurationValue = configurationValue;
         this.uri = uri;

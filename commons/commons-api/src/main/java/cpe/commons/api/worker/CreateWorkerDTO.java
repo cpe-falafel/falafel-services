@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class CreateWorkerDTO {
     private String group;
     private String uri;
+    private String lastFluxUid;
     private String configurationValue;
     private String apiKey;
 }

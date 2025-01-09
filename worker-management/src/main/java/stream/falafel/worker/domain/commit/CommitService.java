@@ -9,6 +9,7 @@ import stream.falafel.worker.domain.worker.WorkerService;
 import stream.falafel.worker.exception.CommitException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import stream.falafel.worker.repository.WorkerRepository;
 
 import java.util.UUID;
 
@@ -19,10 +20,11 @@ public class CommitService {
     private final WorkerService workerService;
     private final FluxService fluxService;
     private final RestTemplate restTemplate;
+    private final WorkerRepository workerRepository;
 
     public void commit(UUID workerId, UUID fluxId) throws CommitException {
 
-        String baseUrl = "someURL/worker/";
+        String baseUrl = "someURL/worker/"; // Need eliot input
 
         Worker existingWorker = workerService.getWorkerByUid(workerId);
         if (existingWorker == null) {
@@ -34,6 +36,10 @@ public class CommitService {
             throw new CommitException();
         }
 
+        //save worker in DB in case of a commit,
+        // if called when worker creation, the save will modify nothing
+        workerRepository.save(existingWorker);
+
         Commit commit = new Commit(existingFlux, existingWorker); //Object to combine flux and worker
 
         try {
@@ -42,6 +48,6 @@ public class CommitService {
             System.out.println(e.getMessage());
         }
 
-        // TODO :: test and define exactly what to send..
+        // TODO :: test
     }
 }

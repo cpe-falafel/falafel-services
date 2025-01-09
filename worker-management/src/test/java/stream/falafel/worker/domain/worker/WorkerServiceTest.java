@@ -29,6 +29,7 @@ class WorkerServiceTest {
         new Worker(
             UUID.randomUUID(),
             UUID.randomUUID(),
+            "1",
             LocalDate.of(2025, 1, 1),
             "config-value",
             "http://worker/api",
@@ -103,6 +104,7 @@ class WorkerServiceTest {
         new Worker(
             UUID.randomUUID(),
             mockWorker.getGroupUid(),
+            "1",
             LocalDate.of(2025, 1, 2),
             "config-value-2",
             "http://worker2/api",
@@ -130,6 +132,7 @@ class WorkerServiceTest {
         new Worker(
             uid,
             UUID.randomUUID(),
+            "1",
             LocalDate.of(2025, 2, 1),
             "new-config",
             "http://newexample.com",

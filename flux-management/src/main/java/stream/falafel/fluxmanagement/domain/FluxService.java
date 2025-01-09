@@ -1,15 +1,19 @@
 package stream.falafel.fluxmanagement.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class FluxService {
 
     private final IFluxRepository iFluxRepository;
+
+    public FluxService(IFluxRepository iFluxRepository) {
+        this.iFluxRepository = iFluxRepository;
+    }
 
     public Flux findByUid(String uid) {
         return iFluxRepository.findByUid(uid);
@@ -35,7 +39,7 @@ public class FluxService {
 
     public Flux deleteFlux(String uid) {
         Flux f = iFluxRepository.findByUid(uid);
-        iFluxRepository.deleteFlux(f);
+        iFluxRepository.deleteFluxByUid(uid);
         return f;
     }
 }

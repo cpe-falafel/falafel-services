@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import stream.falafel.fluxmanagement.domain.EditFlux;
 import stream.falafel.fluxmanagement.domain.Flux;
 
+import java.sql.Date;
+
 @Component
 public class FluxDTOMapper {
 
@@ -20,8 +22,12 @@ public class FluxDTOMapper {
         return new EditFlux(editFluxDTO.getName(), editFluxDTO.getValue(), editFluxDTO.getRessourceDependencies());
     }
 
+    public EditFluxDTO editFluxToEditFluxDTO(EditFlux editFlux){
+        return new EditFluxDTO(editFlux.getName(), editFlux.getValue(), editFlux.getRessourceDependencies());
+    }
+
     public Flux createFluxDTOToFlux(CreateFluxDTO createFluxDTO){
-        return new Flux(null, createFluxDTO.getName(), createFluxDTO.getOwner(), null,null,null);
+        return new Flux(null, createFluxDTO.getName(), createFluxDTO.getOwner(), null,null,new Date(0));
     }
 
     public FluxListSummary fluxToFluxListSummary(Flux flux){

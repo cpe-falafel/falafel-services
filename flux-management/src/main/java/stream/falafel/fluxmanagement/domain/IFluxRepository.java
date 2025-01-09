@@ -11,5 +11,5 @@ public interface IFluxRepository {
 
      void createFlux(Flux flux);
 
-     void deleteFlux(Flux flux);
+     void deleteFluxByUid(String uid);
 }

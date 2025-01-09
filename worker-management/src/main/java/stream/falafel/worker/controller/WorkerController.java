@@ -36,6 +36,8 @@ public class WorkerController {
     @GetMapping
     public ResponseEntity<WorkerListDTO> getAllWorkers(@RequestParam String group) {
         List<Worker> workers = workerService.getAllWorkers(group);
+        if (workers.isEmpty())
+            return ResponseEntity.notFound().build();
         WorkerListDTO workerListDTO = WorkerDTOMapper.toWorkerListDTO(workers);
         return ResponseEntity.ok(workerListDTO);
     }

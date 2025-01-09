@@ -29,7 +29,6 @@ public class FluxHttpClient {
     }
 
 
-    // TODO : modify to adapt new returns in controller flux
     public SingleFluxDTO getFluxByUid(UUID uuid) {
         String uid = uuid.toString(); // Flux use String for the parameters
 

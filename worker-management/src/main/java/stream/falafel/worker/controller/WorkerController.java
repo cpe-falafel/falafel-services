@@ -3,7 +3,7 @@ package stream.falafel.worker.controller;
 import cpe.commons.api.worker.CreateWorkerDTO;
 import cpe.commons.api.worker.SingleWorkerDTO;
 import cpe.commons.api.worker.WorkerListDTO;
-import stream.falafel.worker.domain.CommitService;
+import stream.falafel.worker.domain.commit.CommitService;
 import stream.falafel.worker.domain.worker.Worker;
 
 import java.util.List;

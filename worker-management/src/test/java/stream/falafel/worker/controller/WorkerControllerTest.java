@@ -7,14 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
-import stream.falafel.worker.domain.CommitService;
+import stream.falafel.worker.domain.commit.CommitService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;
 import stream.falafel.worker.exception.CommitException;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

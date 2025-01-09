@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import stream.falafel.worker.domain.commit.CommitService;
 import stream.falafel.worker.domain.flux.FluxService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;

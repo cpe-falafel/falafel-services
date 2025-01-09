@@ -1,6 +1,8 @@
-package stream.falafel.worker.domain;
+package stream.falafel.worker.domain.commit;
 
 import cpe.commons.api.flux.SingleFluxDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
 import stream.falafel.worker.domain.flux.FluxService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;
@@ -16,10 +18,11 @@ public class CommitService {
 
     private final WorkerService workerService;
     private final FluxService fluxService;
+    private final RestTemplate restTemplate;
 
     public void commit(UUID workerId, UUID fluxId) throws CommitException {
 
-        //String baseUrl = "someURL/worker/";
+        String baseUrl = "someURL/worker/";
 
         Worker existingWorker = workerService.getWorkerByUid(workerId);
         if (existingWorker == null) {
@@ -31,16 +34,14 @@ public class CommitService {
             throw new CommitException();
         }
 
-        /*
+        Commit commit = new Commit(existingFlux, existingWorker); //Object to combine flux and worker
 
-        POST {{WorkerApi_HostAddress}}/worker/
-            Accept: application/json
-            Content-Type: application/json
-            {
-                "jsonWorkerConfiguration": "{"in1":{"type":"_IN","in":[],"out":["stream_1"],"properties":{"src":"http"}},"filter1":{"type":"drawbox","in":["stream_1"],"out":["stream_2"],"properties":{}},"out1":{"type":"_OUT","in":["stream_2"],"out":[],"properties":{}}}"
-            }
-         */
+        try {
+            restTemplate.postForEntity(baseUrl, commit, Void.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
-        // TODO :: implement..
+        // TODO :: test and define exactly what to send..
     }
 }

@@ -23,6 +23,7 @@ public class WorkerDTOMapperTest {
         new Worker(
             UUID.randomUUID(),
             UUID.randomUUID(),
+            "1",
             LocalDate.of(2025, 1, 1),
             "config-value",
             "http://worker/api",
@@ -50,6 +51,7 @@ public class WorkerDTOMapperTest {
         new Worker(
             UUID.randomUUID(),
             UUID.randomUUID(),
+            "1",
             LocalDate.of(2025, 1, 1),
             "config-value",
             "http://worker1/api",
@@ -62,6 +64,7 @@ public class WorkerDTOMapperTest {
         new Worker(
             UUID.randomUUID(),
             UUID.randomUUID(),
+            "1",
             LocalDate.of(2025, 1, 2),
             "config-value",
             "http://worker2/api",

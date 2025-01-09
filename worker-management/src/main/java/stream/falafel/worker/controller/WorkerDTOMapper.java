@@ -21,6 +21,7 @@ public class WorkerDTOMapper {
     return new SingleWorkerDTO(
         worker.getUid(),
         worker.getGroupUid(),
+        worker.getLastFluxUid(),
         worker.getLastUpdate().toEpochDay(),
         worker.getConfigurationValue(),
         worker.getPreviewUri(),
@@ -51,6 +52,6 @@ public class WorkerDTOMapper {
    * @return a Worker domain object
    */
   public static Worker toWorker(CreateWorkerDTO dto) {
-    return new Worker(dto.getConfigurationValue(), dto.getUri(), dto.getApiKey());
+    return new Worker(dto.getLastFluxUid(), dto.getConfigurationValue(), dto.getUri(), dto.getApiKey());
   }
 }

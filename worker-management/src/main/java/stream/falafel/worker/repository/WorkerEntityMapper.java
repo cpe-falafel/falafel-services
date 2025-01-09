@@ -13,6 +13,7 @@ public class WorkerEntityMapper {
         return new Worker(
                 UUID.fromString(entity.getUid()),
                 entity.getGroupUid() != null ? UUID.fromString(entity.getGroupUid()) : null,
+                entity.getLastFluxUid(),
                 entity.getLastUpdate(),
                 entity.getConfigurationValue(),
                 entity.getUri(),
@@ -30,6 +31,7 @@ public class WorkerEntityMapper {
         return new WorkerEntity(
                 domain.getUid().toString(),
                 domain.getGroupUid() != null ? domain.getGroupUid().toString() : null,
+                domain.getLastFluxUid(),
                 domain.getLastUpdate(),
                 domain.getConfigurationValue(),
                 domain.getUri(),

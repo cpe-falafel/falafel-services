@@ -22,14 +22,7 @@ public class FluxHttpClient {
         this.baseUrl = fluxManagerBaseUrl;
     }
 
-    public WorkerListDTO getAllWorkers(String group) {
-        String url = baseUrl + "?group=" + (group != null ? group : "");
-        ResponseEntity<WorkerListDTO> response = restTemplate.getForEntity(url, WorkerListDTO.class);
-        return response.getBody();
-    }
 
-
-    // TODO : modify to adapt new returns in controller flux
     public SingleFluxDTO getFluxByUid(UUID uuid) {
         String uid = uuid.toString(); // Flux use String for the parameters
 

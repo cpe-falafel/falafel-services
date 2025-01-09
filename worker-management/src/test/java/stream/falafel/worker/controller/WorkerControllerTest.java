@@ -7,14 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
-import stream.falafel.worker.domain.CommitService;
+import stream.falafel.worker.domain.commit.CommitService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;
 import stream.falafel.worker.exception.CommitException;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -50,7 +49,7 @@ class WorkerControllerTest {
     void testGetAllWorkers_ReturnsWorkers() {
         // Arrange
         String group = "test-group";
-        Worker worker = new Worker("{}", "http://worker-node/api", "api-key");
+        Worker worker = new Worker("1", "{}", "http://worker-node/api", "api-key");
         List<Worker> workers = List.of(worker);
 
         Mockito.when(workerService.getAllWorkers(group)).thenReturn(workers);
@@ -66,7 +65,7 @@ class WorkerControllerTest {
     @Test
     void testGetWorkerById_ReturnsWorker() {
         // Arrange
-        Worker worker = new Worker("{}", "http://worker-node/api", "api-key");
+        Worker worker = new Worker("1","{}", "http://worker-node/api", "api-key");
         Mockito.when(workerService.getWorkerByUid(worker.getUid())).thenReturn(worker);
 
         // Act
@@ -93,8 +92,8 @@ class WorkerControllerTest {
     @Test
     void testCreateWorker_Success() {
         // Arrange
-        CreateWorkerDTO createWorkerDTO = new CreateWorkerDTO("groupUuid","http://worker-node/api", "{}", "api-key");
-        Worker worker = new Worker("{}", "http://worker-node/api", "api-key");
+        CreateWorkerDTO createWorkerDTO = new CreateWorkerDTO("groupUuid","http://worker-node/api","1", "{}", "api-key");
+        Worker worker = new Worker("1", "{}", "http://worker-node/api", "api-key");
 
         Mockito.when(workerService.createWorker(Mockito.any())).thenReturn(worker);
 
@@ -110,7 +109,7 @@ class WorkerControllerTest {
     void testDeleteWorker_Success() {
         // Arrange
         UUID workerId = UUID.randomUUID();
-        Worker worker = new Worker("{}", "http://worker-node/api", "api-key");
+        Worker worker = new Worker("1", "{}", "http://worker-node/api", "api-key");
         Mockito.when(workerService.getWorkerByUid(workerId)).thenReturn(worker);
 
         // Act

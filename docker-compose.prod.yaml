@@ -21,6 +21,8 @@ services:
       - fal_public
 
   flux-management:
+    depends_on:
+      - db
     container_name: flux-management
     build:
       context: .
@@ -35,6 +37,8 @@ services:
       - fal_public
 
   worker-management:
+    depends_on:
+      - db
     container_name: worker-management
     build:
       context: .

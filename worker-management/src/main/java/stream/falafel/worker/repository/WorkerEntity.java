@@ -18,7 +18,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WorkerEntity {
-
     @Id
     @Column(name = "uid", nullable = false)
     private String uid;

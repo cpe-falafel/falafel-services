@@ -43,7 +43,7 @@ public class WorkerEntityMapperTest {
 
     assertNotNull(result);
     assertEquals(uid, result.getUid());
-    assertEquals(groupUid, result.getGroupUid());
+    assertEquals(groupUid.toString(), result.getGroupUid());
     assertEquals("config-value", result.getConfigurationValue());
     assertEquals("http://example.com/worker", result.getUri());
     assertEquals("api-key", result.getApiKey());

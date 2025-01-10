@@ -7,6 +7,7 @@ import cpe.commons.api.worker.WorkerSummary;
 import stream.falafel.worker.domain.worker.Worker;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class WorkerDTOMapper {
@@ -52,6 +53,11 @@ public class WorkerDTOMapper {
    * @return a Worker domain object
    */
   public static Worker toWorker(CreateWorkerDTO dto) {
-    return new Worker(dto.getLastFluxUid(), dto.getConfigurationValue(), dto.getUri(), dto.getApiKey());
+    return new Worker(
+        dto.getGroup(),
+        dto.getLastFluxUid(),
+        dto.getConfigurationValue(),
+        dto.getUri(),
+        dto.getApiKey());
   }
 }

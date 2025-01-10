@@ -11,35 +11,36 @@ import java.util.List;
 @Repository
 public class FluxRepository implements IFluxRepository {
 
-    private final FluxEntityMapper fluxEntityMapper;
+  private final FluxEntityMapper fluxEntityMapper;
 
-    private final FluxJPARepository fluxJPARepository;
+  private final FluxJPARepository fluxJPARepository;
 
-    @Override
-    public Flux findByUid(String uid) {
-        return fluxEntityMapper.fluxEntityToFlux(fluxJPARepository.findByUid(uid));
-    }
+  @Override
+  public Flux findByUid(String uid) {
+    return fluxEntityMapper.fluxEntityToFlux(fluxJPARepository.findByUid(uid));
+  }
 
-    @Override
-    public List<Flux> findByOwner(String owner) {
-        return fluxJPARepository.findByOwner(owner).stream()
-                .map(fluxEntityMapper::fluxEntityToFlux)
-                .toList();
-    }
+  @Override
+  public List<Flux> findByOwner(String owner) {
+    return fluxJPARepository.findByOwner(owner).stream()
+        .map(fluxEntityMapper::fluxEntityToFlux)
+        .toList();
+  }
 
-    @Override
-    public void editFlux(Flux flux){
-        fluxJPARepository.save(fluxEntityMapper.fluxToFluxEntity(flux));
-    }
+  @Override
+  public void editFlux(Flux flux) {
+    fluxJPARepository.save(fluxEntityMapper.fluxToFluxEntity(flux));
+  }
 
-    @Override
-    public void createFlux(Flux flux){
-        fluxJPARepository.save(fluxEntityMapper.fluxToFluxEntityToCreate(flux));
-    }
+  @Override
+  public Flux createFlux(Flux flux) {
+    FluxEntity entity = fluxJPARepository.save(fluxEntityMapper.fluxToFluxEntityToCreate(flux));
+    return fluxEntityMapper.fluxEntityToFlux(entity);
+  }
 
-    @Override
-    public void deleteFluxByUid(String uid){
-        FluxEntity fluxToDelete = fluxJPARepository.findByUid(uid);
-        fluxJPARepository.delete(fluxToDelete);
-    }
+  @Override
+  public void deleteFluxByUid(String uid) {
+    FluxEntity fluxToDelete = fluxJPARepository.findByUid(uid);
+    fluxJPARepository.delete(fluxToDelete);
+  }
 }

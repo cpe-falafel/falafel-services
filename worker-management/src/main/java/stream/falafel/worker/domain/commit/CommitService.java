@@ -3,6 +3,7 @@ package stream.falafel.worker.domain.commit;
 import cpe.commons.api.flux.SingleFluxDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 import stream.falafel.worker.domain.flux.FluxService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;
@@ -43,16 +44,10 @@ public class CommitService {
 
         Commit commit = new Commit(saved.getConfigurationValue()); // Object to combine flux and worker
 
-        URI uri = null;
         try {
-            uri = new URI(saved.getUri());
-            uri = new URI(uri.getScheme(), uri.getHost(), "/worker/", uri.getFragment());
-        } catch (URISyntaxException e) {
-            throw new CommitException(e);
-        }
-
-        try {
-            restTemplate.postForEntity( uri, commit, Void.class);
+            restTemplate.postForEntity(
+                    UriComponentsBuilder.fromHttpUrl(saved.getUri()).path("/worker/").toUriString(),
+                    commit, Void.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

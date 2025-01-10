@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
-import stream.falafel.worker.domain.commit.CommitService;
+import stream.falafel.worker.domain.commit.WorkerCommitService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;
 import stream.falafel.worker.exception.CommitException;
@@ -22,14 +22,14 @@ import static org.mockito.Mockito.mock;
 class WorkerControllerTest {
 
     private WorkerService workerService;
-    private CommitService commitService;
+    private WorkerCommitService workerCommitService;
     private WorkerController workerController;
 
     @BeforeEach
     void setup() {
         workerService = mock(WorkerService.class);
-        commitService = mock(CommitService.class);
-        workerController = new WorkerController(workerService, commitService);
+        workerCommitService = mock(WorkerCommitService.class);
+        workerController = new WorkerController(workerService, workerCommitService);
     }
 
     @Test
@@ -140,14 +140,14 @@ class WorkerControllerTest {
         UUID fluxUuid = UUID.randomUUID();
 
         // No exceptions from commitService.commit()
-        Mockito.doNothing().when(commitService).commit(workerUuid, fluxUuid);
+        Mockito.doNothing().when(workerCommitService).commit(workerUuid, fluxUuid);
 
         // Act
         ResponseEntity<Void> response = workerController.commitFlux(workerUuid, fluxUuid);
 
         // Assert
         assertEquals(200, response.getStatusCodeValue());
-        Mockito.verify(commitService, Mockito.times(1)).commit(workerUuid, fluxUuid);
+        Mockito.verify(workerCommitService, Mockito.times(1)).commit(workerUuid, fluxUuid);
     }
 
     @Test
@@ -156,7 +156,7 @@ class WorkerControllerTest {
         UUID workerId = UUID.randomUUID();
         UUID fluxId = UUID.randomUUID();
 
-        Mockito.doThrow(new CommitException("Test exception")).when(commitService).commit(workerId, fluxId);
+        Mockito.doThrow(new CommitException("Test exception")).when(workerCommitService).commit(workerId, fluxId);
 
         // Act & Assert
         org.junit.jupiter.api.Assertions.assertThrows(CommitException.class, () -> {

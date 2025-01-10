@@ -1,7 +1,6 @@
 package stream.falafel.worker.domain.commit;
 
 import cpe.commons.api.flux.SingleFluxDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 import stream.falafel.worker.domain.flux.FluxService;
 import stream.falafel.worker.domain.worker.Worker;
@@ -15,7 +14,7 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class CommitService {
+public class WorkerCommitService {
 
     private final WorkerService workerService;
     private final FluxService fluxService;

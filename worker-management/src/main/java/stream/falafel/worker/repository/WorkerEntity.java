@@ -33,7 +33,7 @@ public class WorkerEntity {
     @Column(name = "last_update")
     private LocalDate lastUpdate;
 
-    @Column(name = "configuration_value", nullable = false)
+    @Column(name = "configuration_value", nullable = false, columnDefinition = "TEXT")
     private String configurationValue;
 
     @Column(name = "uri", nullable = false)

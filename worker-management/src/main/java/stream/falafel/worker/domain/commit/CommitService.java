@@ -3,6 +3,7 @@ package stream.falafel.worker.domain.commit;
 import cpe.commons.api.flux.SingleFluxDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 import stream.falafel.worker.domain.flux.FluxService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;
@@ -11,6 +12,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import stream.falafel.worker.repository.WorkerRepository;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.UUID;
 
 @Service
@@ -23,8 +26,6 @@ public class CommitService {
     private final WorkerRepository workerRepository;
 
     public void commit(UUID workerId, UUID fluxId) throws CommitException {
-
-        String baseUrl = "someURL/worker/"; // Need eliot input
 
         Worker existingWorker = workerService.getWorkerByUid(workerId);
         if (existingWorker == null) {
@@ -40,10 +41,13 @@ public class CommitService {
         existingWorker.setConfigurationValue(existingFlux.getValue());
         Worker saved = workerRepository.save(existingWorker);
 
-        // Commit commit = new Commit(existingFlux, existingWorker); //Object to combine flux and worker
+
+        Commit commit = new Commit(saved.getConfigurationValue()); // Object to combine flux and worker
 
         try {
-            restTemplate.postForEntity(baseUrl, saved, Void.class);
+            restTemplate.postForEntity(
+                    UriComponentsBuilder.fromHttpUrl(saved.getUri()).path("/worker/").toUriString(),
+                    commit, Void.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

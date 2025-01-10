@@ -77,8 +77,8 @@ class CommitServiceTest {
     when(fluxService.getFluxByUid(validFluxId)).thenReturn(mockFlux);
 
     // Act
-    commitService.commit(validWorkerId, validFluxId);
     when(workerRepository.save(any())).thenReturn(mockWorker);
+    commitService.commit(validWorkerId, validFluxId);
 
     // Verify
     verify(workerService, times(1)).getWorkerByUid(validWorkerId);

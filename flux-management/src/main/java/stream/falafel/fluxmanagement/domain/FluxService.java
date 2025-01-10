@@ -9,37 +9,36 @@ import java.util.List;
 @Service
 public class FluxService {
 
-    private final IFluxRepository iFluxRepository;
+  private final IFluxRepository iFluxRepository;
 
-    public FluxService(IFluxRepository iFluxRepository) {
-        this.iFluxRepository = iFluxRepository;
-    }
+  public FluxService(IFluxRepository iFluxRepository) {
+    this.iFluxRepository = iFluxRepository;
+  }
 
-    public Flux findByUid(String uid) {
-        return iFluxRepository.findByUid(uid);
-    }
+  public Flux findByUid(String uid) {
+    return iFluxRepository.findByUid(uid);
+  }
 
-    public List<Flux> findByOwner(String owner) {
-        return iFluxRepository.findByOwner(owner);
-    }
+  public List<Flux> findByOwner(String owner) {
+    return iFluxRepository.findByOwner(owner);
+  }
 
-    public Flux editFlux(String uid, EditFlux editFlux) {
-        Flux f = findByUid(uid);
-        f.setName(editFlux.getName());
-        f.setValue(editFlux.getValue());
-        f.setRessourceDependencies(editFlux.getRessourceDependencies());
-        iFluxRepository.editFlux(f);
-        return f;
-    }
+  public Flux editFlux(String uid, EditFlux editFlux) {
+    Flux f = findByUid(uid);
+    f.setName(editFlux.getName());
+    f.setValue(editFlux.getValue());
+    f.setRessourceDependencies(editFlux.getRessourceDependencies());
+    iFluxRepository.editFlux(f);
+    return f;
+  }
 
-    public Flux createFlux(Flux f) {
-        iFluxRepository.createFlux(f);
-        return f;
-    }
+  public Flux createFlux(Flux f) {
+    return iFluxRepository.createFlux(f);
+  }
 
-    public Flux deleteFlux(String uid) {
-        Flux f = iFluxRepository.findByUid(uid);
-        iFluxRepository.deleteFluxByUid(uid);
-        return f;
-    }
+  public Flux deleteFlux(String uid) {
+    Flux f = iFluxRepository.findByUid(uid);
+    iFluxRepository.deleteFluxByUid(uid);
+    return f;
+  }
 }

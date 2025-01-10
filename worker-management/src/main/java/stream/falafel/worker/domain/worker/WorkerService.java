@@ -1,7 +1,7 @@
 package stream.falafel.worker.domain.worker;
 
-import stream.falafel.worker.repository.WorkerRepository;
 import org.springframework.stereotype.Service;
+import stream.falafel.worker.repository.WorkerRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +47,7 @@ public class WorkerService {
     List<Worker> workers = workerRepository.findAll();
 
     if (group != null) {
-      workers = workers.stream().filter(worker -> worker.getGroupUid().equals(group)).toList();
+      return workers.stream().filter(worker -> worker.getGroupUid().equals(group)).toList();
     }
 
     return workerRepository.findAll();

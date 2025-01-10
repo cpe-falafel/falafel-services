@@ -2,7 +2,6 @@ package stream.falafel.worker.domain.worker;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.time.LocalDate;

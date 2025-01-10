@@ -29,7 +29,7 @@ public class WorkerEntityMapper {
     }
     return new WorkerEntity(
         domain.getUid().toString(),
-        domain.getGroupUid() != null ? domain.getGroupUid().toString() : null,
+        domain.getGroupUid(),
         domain.getLastFluxUid(),
         domain.getLastUpdate(),
         domain.getConfigurationValue(),

@@ -10,6 +10,5 @@ import stream.falafel.worker.domain.worker.Worker;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Commit {
-    private SingleFluxDTO flux;
-    private Worker worker;
+    private String jsonWorkerConfiguration;
 }

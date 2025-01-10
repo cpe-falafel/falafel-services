@@ -18,13 +18,17 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WorkerEntity {
-
+// TODO : Rajouter un champ lastFluxUid pour sauvegarder le dernier flux associé au worker.
+//  + A mettre lors de la méthode de création du worker (create workerDTO) + au commit
     @Id
     @Column(name = "uid", nullable = false)
     private String uid;
 
     @Column(name = "group_uid")
     private String groupUid;
+
+    @Column(name = "last_flux_uid")
+    private String lastFluxUid;
 
     @Column(name = "last_update")
     private LocalDate lastUpdate;

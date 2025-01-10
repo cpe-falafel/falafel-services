@@ -1,12 +1,15 @@
-package stream.falafel.worker.domain;
+package stream.falafel.worker.domain.commit;
 
 import cpe.commons.api.flux.SingleFluxDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
 import stream.falafel.worker.domain.flux.FluxService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;
 import stream.falafel.worker.exception.CommitException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import stream.falafel.worker.repository.WorkerRepository;
 
 import java.util.UUID;
 
@@ -16,10 +19,12 @@ public class CommitService {
 
     private final WorkerService workerService;
     private final FluxService fluxService;
+    private final RestTemplate restTemplate;
+    private final WorkerRepository workerRepository;
 
     public void commit(UUID workerId, UUID fluxId) throws CommitException {
 
-        //String baseUrl = "someURL/worker/";
+        String baseUrl = "someURL/worker/"; // Need eliot input
 
         Worker existingWorker = workerService.getWorkerByUid(workerId);
         if (existingWorker == null) {
@@ -31,16 +36,18 @@ public class CommitService {
             throw new CommitException();
         }
 
-        /*
+        existingWorker.setLastFluxUid(fluxId.toString());
+        existingWorker.setConfigurationValue(existingFlux.getValue());
+        Worker saved = workerRepository.save(existingWorker);
 
-        POST {{WorkerApi_HostAddress}}/worker/
-            Accept: application/json
-            Content-Type: application/json
-            {
-                "jsonWorkerConfiguration": "{"in1":{"type":"_IN","in":[],"out":["stream_1"],"properties":{"src":"http"}},"filter1":{"type":"drawbox","in":["stream_1"],"out":["stream_2"],"properties":{}},"out1":{"type":"_OUT","in":["stream_2"],"out":[],"properties":{}}}"
-            }
-         */
+        // Commit commit = new Commit(existingFlux, existingWorker); //Object to combine flux and worker
 
-        // TODO :: implement..
+        try {
+            restTemplate.postForEntity(baseUrl, saved, Void.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        // TODO :: test
     }
 }

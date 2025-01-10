@@ -12,6 +12,7 @@ import java.util.UUID;
 public class SingleWorkerDTO {
   private UUID uid;
   private UUID group;
+  private String lastFluxUid;
   private long lastUpdate;
   private String configurationValue;
   private String previewUri;

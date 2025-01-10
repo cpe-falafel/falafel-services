@@ -1,8 +1,6 @@
 package stream.falafel.fluxmanagement.repository;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Date;
@@ -16,7 +14,8 @@ public class FluxEntity {
 
   private String owner;
 
-  @Lob private String value; // json with configuration => Destined to be an object
+  @Column(columnDefinition = "TEXT")
+  private String value;
 
   private String ressourceDependencies; // link to minio resources
 

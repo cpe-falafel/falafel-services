@@ -3,7 +3,7 @@ package stream.falafel.worker.controller;
 import cpe.commons.api.worker.CreateWorkerDTO;
 import cpe.commons.api.worker.SingleWorkerDTO;
 import cpe.commons.api.worker.WorkerListDTO;
-import stream.falafel.worker.domain.commit.WorkerCommitService;
+import stream.falafel.worker.domain.commit.CommitService;
 import stream.falafel.worker.domain.worker.Worker;
 
 import java.util.List;
@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.*;
 public class WorkerController {
 
     private final WorkerService workerService;
-    private final WorkerCommitService workerCommitService;
+    private final CommitService commitService;
 
-    public WorkerController(WorkerService workerService, WorkerCommitService workerCommitService) {
+    public WorkerController(WorkerService workerService, CommitService commitService) {
         this.workerService = workerService;
-        this.workerCommitService = workerCommitService;
+        this.commitService = commitService;
     }
 
     /**
@@ -90,7 +90,7 @@ public class WorkerController {
 
     @PutMapping("/{uid}/flux/{fluxId}")
     public ResponseEntity<Void> commitFlux(@PathVariable UUID uid, @PathVariable UUID fluxId) throws CommitException {
-        workerCommitService.commit(uid, fluxId);
+        commitService.commit(uid, fluxId);
         return ResponseEntity.ok().build();
     }
 }

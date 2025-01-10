@@ -1,4 +1,4 @@
-package stream.falafel.worker.domain.commit;
+package stream.falafel.worker.domain;
 
 import cpe.commons.api.flux.SingleFluxDTO;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import stream.falafel.worker.domain.commit.CommitService;
 import stream.falafel.worker.domain.flux.FluxService;
 import stream.falafel.worker.domain.worker.Worker;
 import stream.falafel.worker.domain.worker.WorkerService;
@@ -17,7 +18,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-class WorkerCommitServiceTest {
+class CommitServiceTest {
 
   @Mock private WorkerService workerService;
 
@@ -26,7 +27,7 @@ class WorkerCommitServiceTest {
   @Mock
   private WorkerRepository workerRepository;
 
-  @InjectMocks private WorkerCommitService workerCommitService;
+  @InjectMocks private CommitService commitService;
 
   private UUID validWorkerId;
   private UUID validFluxId;
@@ -48,7 +49,7 @@ class WorkerCommitServiceTest {
     when(workerService.getWorkerByUid(validWorkerId)).thenReturn(null);
 
     // Act & Assert
-    assertThrows(CommitException.class, () -> workerCommitService.commit(validWorkerId, validFluxId));
+    assertThrows(CommitException.class, () -> commitService.commit(validWorkerId, validFluxId));
 
     // Verify
     verify(workerService, times(1)).getWorkerByUid(validWorkerId);
@@ -62,7 +63,7 @@ class WorkerCommitServiceTest {
     when(fluxService.getFluxByUid(validFluxId)).thenReturn(null);
 
     // Act & Assert
-    assertThrows(CommitException.class, () -> workerCommitService.commit(validWorkerId, validFluxId));
+    assertThrows(CommitException.class, () -> commitService.commit(validWorkerId, validFluxId));
 
     // Verify
     verify(workerService, times(1)).getWorkerByUid(validWorkerId);
@@ -76,7 +77,7 @@ class WorkerCommitServiceTest {
     when(fluxService.getFluxByUid(validFluxId)).thenReturn(mockFlux);
 
     // Act
-    workerCommitService.commit(validWorkerId, validFluxId);
+    commitService.commit(validWorkerId, validFluxId);
     when(workerRepository.save(any())).thenReturn(mockWorker);
 
     // Verify

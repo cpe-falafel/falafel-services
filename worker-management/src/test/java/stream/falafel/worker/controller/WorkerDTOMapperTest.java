@@ -22,7 +22,7 @@ public class WorkerDTOMapperTest {
     Worker worker =
         new Worker(
             UUID.randomUUID(),
-            UUID.randomUUID(),
+            "null",
             "1",
             LocalDate.of(2025, 1, 1),
             "config-value",
@@ -50,7 +50,7 @@ public class WorkerDTOMapperTest {
     Worker worker1 =
         new Worker(
             UUID.randomUUID(),
-            UUID.randomUUID(),
+            "null",
             "1",
             LocalDate.of(2025, 1, 1),
             "config-value",
@@ -63,7 +63,7 @@ public class WorkerDTOMapperTest {
     Worker worker2 =
         new Worker(
             UUID.randomUUID(),
-            UUID.randomUUID(),
+            "null",
             "1",
             LocalDate.of(2025, 1, 2),
             "config-value",

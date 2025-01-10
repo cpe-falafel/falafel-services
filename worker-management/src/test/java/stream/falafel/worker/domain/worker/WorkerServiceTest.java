@@ -28,7 +28,7 @@ class WorkerServiceTest {
     mockWorker =
         new Worker(
             UUID.randomUUID(),
-            UUID.randomUUID(),
+            "null",
             "1",
             LocalDate.of(2025, 1, 1),
             "config-value",
@@ -131,7 +131,7 @@ class WorkerServiceTest {
     Worker updatedWorker =
         new Worker(
             uid,
-            UUID.randomUUID(),
+            "null",
             "1",
             LocalDate.of(2025, 2, 1),
             "new-config",

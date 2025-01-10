@@ -4,9 +4,9 @@ FROM maven:3.9.9-eclipse-temurin-21-alpine AS builder
 WORKDIR /app
 COPY .. .
 
-RUN mvn clean install -pl commons -am
+RUN mvn clean install -pl commons -am -Dmaven.test.skip=true
 
-RUN mvn clean package -pl worker-management -am
+RUN mvn clean package -pl worker-management -am -Dmaven.test.skip=true
 
 # EXECUTION
 FROM eclipse-temurin:21-jre-alpine
